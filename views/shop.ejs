@@ -1,0 +1,50 @@
+<%- include('includes/head.ejs') %>
+  </head>
+
+  <body>
+    <%- include('includes/header.ejs') %>
+      <main class="main-content grid-container">
+        <section class="hero-section grid-content-full">
+          <div class="hero-info-block section-content">
+            <h2 class="heading-md">
+              <img width="46" height="46" src="/images/icons/flower-pot.png" alt="plant"> <br>
+              The nature candle
+            </h2>
+            <p class="txt">All handmade with natural soy wax, Candleaf is a companion for all your pleasure moments </p>
+            <button class="btn big solid">Discovery our collection</button>
+          </div>
+        </section>
+
+        <section class="section-products grid-content">
+          <div class="section-content">
+            <header class="products-header">
+              <h2 class="heading-md">Popular</h2>
+              <p class="txt descr-heading">Order it for you or for your beloved ones </p>
+            </header>
+
+            <% if (prods.length> 0) { %>
+              <ul class="list product-list">
+                <% for (let product of prods) { %>
+                  <li class="product-card content-center">
+                    <img src="/images/product-images/spiced-mint.png" alt="Spiced Mint candle">
+                    <div class="product-cart-content">
+                      <h3 class="txt product-title">
+                        <%= product.title %>
+                      </h3>
+                      <span class="txt product-price">
+                        <%= product.price %>$
+                      </span>
+                    </div>
+                  </li>
+                  <% } %>
+              </ul>
+              <% } else { %>
+                <h2 class="heading-sm">No Products Found!</h2>
+                <% } %>
+
+                  <button class="product-btn btn solid">See more</button>
+          </div>
+        </section>
+      </main>
+
+      <%- include('includes/end.ejs') %>

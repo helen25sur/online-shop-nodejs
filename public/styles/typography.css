@@ -7,14 +7,24 @@
   line-height: 18px;
 }
 
-.heading-md {
+.heading-md,
+.heading-sm {
   font-family: 'Sintony';
   font-style: normal;
   font-weight: 700;
+  text-align: center;
+}
+
+.heading-md {
   font-size: 40px;
   line-height: 144%;
-  text-align: center;
   letter-spacing: 0.6px;
+}
+
+.heading-sm {
+  font-size: 26px;
+  line-height: 58px;
+  letter-spacing: 0.1px;
 }
 
 .descr-heading {

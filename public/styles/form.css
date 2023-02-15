@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-sm);
+}
+
+.form input {
+  width: 100%;
+  padding: var(--gap-xs) var(--gap-sm);
+  border: 0.5px solid var(--clr-soft-grey);
+  transition: border 0.3s ease-in;
+}
+
+.form input,
+.form input::placeholder {
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 14px;
+  color: #616161;
+}
+
+.form input[type="number"] {
+  width: 75px;
+}
+
+.form input:hover,
+.form input:focus,
+.form input:active {
+  border-color: var(--clr-green);
+  outline: 0.5px solid var(--clr-green);
+}

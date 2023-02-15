@@ -1,3 +1,11 @@
+body {
+  color: var(--clr-black);
+}
+
+.active {
+  color: var(--clr-green);
+}
+
 .main-header {
   position: sticky;
   top: 0;
@@ -5,6 +13,7 @@
   height: var(--header-height);
   border-bottom: 1px solid #E5E5E5;
   z-index: 5;
+  color: var(--clr-black);
 }
 
 .main-nav {
@@ -15,6 +24,7 @@
 
 .cart-profile-btn {
   padding: 0;
+  color: var(--clr-black);
 }
 
 .list {

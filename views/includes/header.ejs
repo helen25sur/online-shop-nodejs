@@ -1,0 +1,35 @@
+<header class="main-header grid-container">
+  <nav class="main-nav grid-content section-content">
+    <button id="mob-menu-btn" class="mob-burger btn not-animated">
+      <span class="mob-burger-span"></span>
+      <span class="mob-burger-span"></span>
+      <span class="mob-burger-span"></span>
+    </button>
+
+    <a class="nav-link" href="/">
+      <svg class="logo" width="126" height="34">
+        <use href="/images/icons/logo.svg#logo" />
+      </svg>
+    </a>
+
+    <ul class="nav-list header-list list txt body-txt">
+      <li class="nav-item <%= path==='/' ? 'active' : '' %>"><a class="nav-link" href="/">Main</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+    </ul>
+
+    <div class="cart-profile">
+      <a href="/admin/add-product" class="cart-profile-btn btn">
+        <svg class="icon <%= path==='/admin/add-product' ? 'active' : '' %>" width="30" height="30">
+          <use href="/images/icons/profile-icon.svg#icon" />
+        </svg>
+      </a>
+      <a href="/cart" class="cart-profile-btn btn">
+        <svg class="icon" width="26" height="26">
+          <use href="/images/icons/cart-icon.svg#icon" />
+        </svg>
+      </a>
+    </div>
+  </nav>
+</header>

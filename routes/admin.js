@@ -3,8 +3,17 @@ const { join } = require('path');
 const express = require('express');
 const router = express.Router();
 
-router.get('/users', (req, res, next) => {
-  res.sendFile(join(__dirname, '..', 'views', 'users.html'));
+const products = [];
+
+router.get('/add-product', (req, res, next) => {
+  res.render('admin', {pageTitle: 'Add Product', path: '/admin/add-product'});
 });
 
-module.exports = router;
+router.post('/add-product', (req, res, next) => {
+  console.log(req.body);
+  products.push({title: req.body.prodTitle, price: req.body.prodPrice});
+  res.redirect('/');
+});
+
+exports.routes = router;
+exports.products = products;
