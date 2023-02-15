@@ -1,0 +1,129 @@
+.main-header {
+  position: sticky;
+  top: 0;
+  background: var(--clr-white);
+  height: var(--header-height);
+  border-bottom: 1px solid #E5E5E5;
+  z-index: 5;
+}
+
+.main-nav {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-profile-btn {
+  padding: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  padding: var(--gap-md) 0 var(--gap-md) 63px;
+  width: 100%;
+  background-color: var(--clr-white);
+  transform: translateY(-300px);
+  opacity: 0;
+  transition: all var(--duration) ease-in-out;
+}
+
+.nav-list>.nav-item {
+  margin-bottom: var(--gap-sm);
+}
+
+.nav-list>.nav-item>.nav-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.cart-profile {
+  display: flex;
+}
+
+.cart-profile-btn:first-of-type {
+  margin-right: var(--gap-sm);
+}
+
+.hero-section {
+  padding: var(--gap-xxxl) var(--gap-sm);
+  background-image: url("../images/hero-bg.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: var(--clr-dark-blue);
+}
+
+.hero-info-block {
+  padding-top: var(--gap-lg);
+  padding-bottom: var(--gap-lg);
+  align-items: center;
+  text-align: center;
+  background: rgba(247, 248, 250, 0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 4px;
+}
+
+.section-products {
+  margin-bottom: var(--gap-xl);
+  padding-top: var(--gap-lg);
+  color: var(--clr-blue);
+}
+
+.section-products .heading-md {
+  margin-bottom: var(--gap-sm);
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--gap-lg);
+}
+
+.product-card {
+  position: relative;
+  max-height: 148px;
+  width: 100%;
+  background-color: #F7F8FA;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-cart-content {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 48px;
+  background-color: var(--clr-white);
+}
+
+.product-title {
+  padding: 0;
+  padding-top: var(--gap-xs);
+  padding-left: var(--gap-sm);
+  margin: 0;
+  align-self: self-start;
+}
+
+.product-price {
+  align-self: self-end;
+  font-size: 15px;
+  color: var(--clr-green);
+}
+
+.product-btn {
+  align-self: center;
+}

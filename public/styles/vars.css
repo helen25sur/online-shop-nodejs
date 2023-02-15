@@ -24,4 +24,7 @@
   --width-full: 100%;
   --width-md: 730px;
   --width-xl: 1120px;
+
+  /* Animation & Transition */
+  --duration: 0.7s;
 }

@@ -6,21 +6,21 @@
 
   /* Reset */
   font-family: 'Poppins';
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 20px;
   font-weight: 400;
   background: none;
   border: none;
 
   /* Styles */
-  padding: 8px 44px;
+  padding: var(--gap-xs) 44px;
   border-radius: 4px;
   border: 1px solid transparent;
   transition: all 0.2s ease-in;
 }
 
 .btn.big {
-  padding: 8px 96px;
+  padding: var(--gap-xs) 44px;
 }
 
 .btn.outline,
