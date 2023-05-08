@@ -13,10 +13,20 @@
     </a>
 
     <ul class="nav-list header-list list txt body-txt">
-      <li class="nav-item <%= path==='/' ? 'active' : '' %>"><a class="nav-link" href="/">Main</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+      <li class="nav-item <%= path==='/' ? 'active' : '' %>">
+        <a class="nav-link" href="/">Main</a>
+      </li>
+      <li class="nav-item <%= path==='/products' ? 'active' : '' %>">
+        <a class="nav-link" href="/products">Products</a>
+      </li>
+      <li class="nav-item <%= path==='/admin/add-product' ? 'active' : '' %>">
+        <a class="nav-link" href="/admin/add-product">Add Product</a>
+      </li>
+      <li class="nav-item <%= path==='/admin/products' ? 'active' : '' %>">
+        <a class="nav-link" href="/admin/products">Admin Products</a>
+      </li>
+      <!-- <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li> -->
     </ul>
 
     <div class="cart-profile">
@@ -26,7 +36,7 @@
         </svg>
       </a>
       <a href="/cart" class="cart-profile-btn btn">
-        <svg class="icon" width="26" height="26">
+        <svg class="icon <%= path==='/cart' ? 'active' : '' %>" width="26" height="26">
           <use href="/images/icons/cart-icon.svg#icon" />
         </svg>
       </a>
