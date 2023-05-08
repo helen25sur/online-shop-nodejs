@@ -5,7 +5,8 @@
   gap: var(--gap-sm);
 }
 
-.form input {
+.form input,
+.form textarea {
   width: 100%;
   padding: var(--gap-xs) var(--gap-sm);
   border: 0.5px solid var(--clr-soft-grey);
@@ -13,7 +14,9 @@
 }
 
 .form input,
-.form input::placeholder {
+.form input::placeholder,
+.form textarea,
+.form textarea::placeholder {
   font-family: 'Poppins';
   font-weight: 400;
   font-size: 14px;
@@ -26,7 +29,10 @@
 
 .form input:hover,
 .form input:focus,
-.form input:active {
+.form input:active,
+.form textarea:hover,
+.form textarea:focus,
+.form textarea:active {
   border-color: var(--clr-green);
   outline: 0.5px solid var(--clr-green);
 }

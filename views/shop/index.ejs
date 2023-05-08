@@ -26,14 +26,19 @@
               <ul class="list product-list">
                 <% for (let product of prods) { %>
                   <li class="product-card content-center">
-                    <img src="/images/product-images/spiced-mint.png" alt="Spiced Mint candle">
+                    <img class="product-cart-image" src="<%= !product.imageUrl ? '/images/product-images/spiced-mint.png' : product.imageUrl %>"
+                    alt="<%= product.title %>" width="255">
                     <div class="product-cart-content">
                       <h3 class="txt product-title">
                         <%= product.title %>
                       </h3>
                       <span class="txt product-price">
-                        <%= product.price %>$
+                        $<%= product.price %>
                       </span>
+                       <p class="txt product-description">
+                        <%= product.description %>
+                      </p>
+                    <button class="product-btn btn outline small">Add Product</button>
                     </div>
                   </li>
                   <% } %>
