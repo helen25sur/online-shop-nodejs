@@ -35,10 +35,9 @@
                       <span class="txt product-price">
                         $<%= product.price %>
                       </span>
-                       <p class="txt product-description">
-                        <%= product.description %>
-                      </p>
-                    <button class="product-btn btn outline small">Add Product</button>
+                    <div class="product-card_actions">
+                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                      </div>
                     </div>
                   </li>
                   <% } %>

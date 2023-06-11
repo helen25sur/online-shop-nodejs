@@ -145,11 +145,14 @@ a {
 }
 
 .product-btn {
+  margin-right: 1rem;
   align-self: center;
 }
 
-.product-btn.outline {
+.product-card_actions {
   margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .product-cart-image {
@@ -160,4 +163,18 @@ a {
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+/* ============= Product's Page ============ */
+
+.page-product-content {
+  flex-direction: row;
+}
+
+.page-product-content>div {
+  flex: 50% 1 0;
+}
+
+.page-image {
+  width: 80%;
 }

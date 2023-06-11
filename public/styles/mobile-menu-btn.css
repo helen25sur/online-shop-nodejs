@@ -52,6 +52,7 @@
 .not-animated ~ .nav-list {
   opacity: 0;
   transform: translateY(-300px);
+  z-index: -1;
 }
 
 @keyframes openMenu1 {
