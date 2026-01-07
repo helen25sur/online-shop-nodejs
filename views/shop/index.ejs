@@ -11,7 +11,7 @@
               The nature candle
             </h2>
             <p class="txt">All handmade with natural soy wax, Candleaf is a companion for all your pleasure moments </p>
-            <button class="btn big solid">Discovery our collection</button>
+            <a href="/products" class="btn big solid">Discovery our collection</a>
           </div>
         </section>
 
@@ -35,7 +35,7 @@
                       <span class="txt product-price">
                         $<%= product.price %>
                       </span>
-                    <div class="product-card_actions">
+                      <div class="product-card_actions">
                         <%- include('../includes/add-to-cart.ejs', {product: product}) %>
                       </div>
                     </div>
@@ -46,7 +46,7 @@
                 <h2 class="heading-sm">No Products Found!</h2>
                 <% } %>
 
-                  <button class="product-btn btn solid">See more</button>
+                  <a href="/products" class="product-btn btn solid">See more</a>
           </div>
         </section>
       </main>
