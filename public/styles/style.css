@@ -194,3 +194,68 @@ a {
 .page-image {
   width: 80%;
 }
+
+/* =================== Feature Section ================ */
+.grid-content-full:has(.feature-section) {
+  background-color: var(--clr-light-grey);
+}
+
+.feature-section {
+  padding: var(--gap-xxl) var(--gap-xxxl);
+}
+
+.features-all-content {
+  display: grid;
+  grid-template-areas: 
+    "header header"
+    "content image";
+}
+
+.feature-header {
+  grid-area: header;
+}
+
+.feature-header .heading-md {
+  width: 350px;
+  text-align: left;
+  margin-bottom: var(--gap-sm);
+}
+
+.feature-content {
+  min-width: 50%;
+  grid-area: content;
+}
+
+.list-feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  text-align: left;
+  gap: var(--gap-xs);
+  padding-top: var(--gap-lg);
+  padding-bottom: var(--gap-xl);
+}
+
+.feature-item {
+  padding-left: var(--gap-md);
+  position: relative;
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--gap-sm);
+  height: var(--gap-sm);
+  background-image: url('../images/icons/checkmark-circle-outline.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.feature-image {
+  width: 50%;
+  grid-area: image;
+}
