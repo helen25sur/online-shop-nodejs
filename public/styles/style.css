@@ -1,5 +1,6 @@
 body {
   color: var(--clr-black);
+  font-family: 'Poppins', sans-serif;
 }
 
 button {
@@ -86,18 +87,26 @@ a {
 }
 
 .hero-info-block {
-  padding-top: var(--gap-lg);
-  padding-bottom: var(--gap-lg);
+  max-width: 730px;
+  margin: 0 auto;
+  padding: var(--gap-lg) var(--gap-xxl);
   align-items: center;
   text-align: center;
   background: rgba(247, 248, 250, 0.8);
   backdrop-filter: blur(12px);
   border-radius: 4px;
+  gap: 0;
 }
+
+.hero-info-block .txt {
+  margin-bottom: var(--gap-lg);
+}
+
+/* ================== Product Section ================ */
 
 .section-products {
   margin-bottom: var(--gap-xl);
-  padding-top: var(--gap-lg);
+  padding: var(--gap-xxl) var(--gap-xxxl);
   color: var(--clr-blue);
 }
 
