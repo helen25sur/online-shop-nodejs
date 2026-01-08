@@ -10,13 +10,16 @@
             <div class="page-product-image">
               <img class="page-image" src="<%= !product.imageUrl ? '/images/product-images/spiced-mint.png' : product.imageUrl %>" alt="<%= product.title %>">
               <p class="txt">All hand-made with natural soy wax, Candleaf is made for your pleasure moments. </p>
-              <p class="txt txt-emphasise">🚚 FREE SHIPPING</p>
+              <p class="txt txt-emphasize">🚚 FREE SHIPPING</p>
             </div>
             <div class="page-product-content">
               <h2 class="heading-md"><%= product.title %></h2>
-              <p><%= product.price %></p>
-              <p>Quantity: <input type="number" step="1" value="1" /></p>
-              <p class="txt"><%= product.description %></p>
+              <p class="product-price-item txt-emphasize"><span><%= product.price %></span></p>
+              <p class="quantity-item body-txt">Quantity: <br/> <input type="number" name="quantity" step="1" value="1" /></p>
+              <div class="product-card_actions">
+                <%- include('../includes/add-to-cart.ejs') %>
+              </div>
+              <p class="txt product-description"><%= product.description %></p>
               <!-- <p class="txt">
                 Wax: Top grade Soy wax that delivers a smoke less, consistent burn
                 Fragrance: Premium quality ingredients with natural essential oils
@@ -24,9 +27,7 @@
                 Dimension: 10cm x 5cm
                 Weight: 400g
               </p> -->
-              <div class="product-card_actions">
-                <%- include('../includes/add-to-cart.ejs') %>
-              </div>
+              
             </div>
           </div>
         </section>

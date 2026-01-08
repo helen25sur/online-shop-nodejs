@@ -145,15 +145,16 @@ a {
 .product-title {
   padding: 0;
   padding-top: var(--gap-xs);
-  padding-left: var(--gap-sm);
   margin: 0;
   margin-right: var(--gap-sm);
   align-self: self-start;
+  text-align: left;
 }
 
 .product-price {
   position: absolute;
   top: var(--gap-sm);
+  right: var(--gap-xs);
   align-self: self-end;
   font-size: 15px;
   color: var(--clr-green);
@@ -182,6 +183,9 @@ a {
 }
 
 /* ============= Product's Page ============ */
+.section-product {
+  padding: var(--gap-xxl) var(--gap-xxxl);
+}
 
 .page-product-content {
   flex-direction: row;
@@ -191,8 +195,67 @@ a {
   flex: 50% 1 0;
 }
 
+.page-product-image {
+  text-align: center;
+  width: 50%;
+}
+
 .page-image {
-  width: 80%;
+  width: 100%;
+  background-color: var(--clr-light-grey);
+  margin-bottom: var(--gap-sm);
+}
+
+.page-product-image .txt-emphasize {
+  margin-top: var(--gap-sm);
+}
+
+.page-product-content .heading-md {
+  font-size: var(--gap-md);
+  position: relative;
+  text-align: left;
+}
+
+.page-product-content .heading-md::after {
+  content: ' Candleaf ©';
+}
+
+.product-price-item {
+  position: relative;
+  font-size: var(--gap-md);
+  margin-bottom: var(--gap-md);
+}
+
+.product-price-item span {
+  padding-left: 0.8rem;
+}
+
+.product-price-item span::before {
+  content: '$';
+  position: absolute;
+  left: 0;
+}
+
+.quantity-item {
+  margin-bottom: var(--gap-lg);
+}
+
+.quantity-item input {
+  border: 1px solid var(--clr-green);
+  padding: 4px;
+  text-align: center;
+  width: 75px;
+  height: 30px;
+}
+
+.product-description {
+  margin-top: var(--gap-lg);
+  padding: var(--gap-md);
+  border: 1px solid #E6E6E6;
+}
+
+.section-product .product-card_actions {
+  justify-content: start;
 }
 
 /* =================== Feature Section ================ */
@@ -222,7 +285,7 @@ a {
 }
 
 .feature-content {
-  min-width: 50%;
+  /* min-width: 50%; */
   grid-area: content;
 }
 
@@ -256,6 +319,50 @@ a {
 }
 
 .feature-image {
-  width: 50%;
   grid-area: image;
+  aspect-ratio: 736 / 454;
+}
+
+.feature-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* ================== MEDIA QUERIES ===================== */
+
+
+@media screen and (max-width: 1400px) {
+  .product-list { 
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .product-list { 
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 821px) {
+  .product-list { 
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 522px) {
+  .section-products {
+    padding: var(--gap-lg) var(--gap-xl);
+  }
+ .feature-section {
+    padding: var(--gap-lg) var(--gap-xl);
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .features-all-content {
+    grid-template-areas: 
+      "header header"
+      "image image"
+      "content content";
+}  
 }
