@@ -358,6 +358,7 @@ a {
 .header-table .table-total {
   grid-area: total;
 }
+
 .section-cart .cart-item {
   width: 100%;
   display: grid;
@@ -365,6 +366,10 @@ a {
     "product price qty total";
   grid-template-columns: 1fr 120px 120px 120px;
   align-items: center;
+}
+
+.section-cart hr {
+  border: 1px solid #E5E5E5;
 }
 
 .table-product {
@@ -387,6 +392,7 @@ a {
 .table-product img {
   background-color: var(--clr-light-grey);
   margin-right: var(--gap-md);
+  margin-bottom: var(--gap-sm);
 }
 
 .cart-item-price {
