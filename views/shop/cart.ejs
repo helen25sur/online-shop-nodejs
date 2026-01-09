@@ -3,5 +3,56 @@
 
   <body>
     <%- include('../includes/header.ejs') %>
-    <h1>Cart</h1>
-    <%- include('../includes/end.ejs') %>
+
+      <main class="main-content grid-container">
+
+        <section class="section-cart grid-content">
+          <div class="section-content">
+            <header class="section-header">
+              <h1 class="heading-md">Your cart items</h1>
+              <a href="/products" class="txt txt-emphasize">Back to shopping</a>
+            </header>
+            <div class="header-table">
+              <span class="table-product">Product</span>
+              <span class="table-price">Price</span>
+              <span class="table-quantity">Quantity</span>
+              <span class="table-total">Total</span>
+            </div>
+            <% if (products.length> 0) { %>
+              <hr />
+              <ol class="">
+                <% for (let product of products) { %>
+                  <li class="cart-item">
+                    <div class="table-product">
+                      <img class=""
+                      src="<%= !product.imageUrl ? '/images/product-images/spiced-mint.png' : product.imageUrl %>"
+                      alt="<%= product.title %>" width="160">
+                      <div class="table-product-content">
+                      <h3 class="txt">
+                        <%= product.title %>
+                      </h3>
+                      <a class="cart-action txt txt-emphasize" href="/cart/delete">Remove</a>
+                      </div>
+                      
+                    </div>
+
+                    <span class="txt cart-item-price">
+                      $<%= product.price %>
+                    </span>
+                    <span class="txt cart-item-quantity">
+                      Quantity: <%= product.qty %>
+                    </span>
+                    <span class="txt cart-item-total">
+                      Total: <%= product.price %>
+                    </span>
+                  </li>
+                  <% } %>
+              </ol>
+              <hr />
+              <% } else { %>
+                <h2 class="heading-sm">Cart is empty!</h2>
+                <% } %>
+          </div>
+        </section>
+      </main>
+      <%- include('../includes/end.ejs') %>

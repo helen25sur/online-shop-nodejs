@@ -328,6 +328,79 @@ a {
   height: auto;
 }
 
+/* ==================== CART ===================== */
+.section-cart {
+  padding: var(--gap-xxl) var(--gap-xxxl);
+}
+
+.header-table {
+  width: 100%;
+  display: grid;
+  grid-template-areas: 
+    "product price qty total";
+  grid-template-columns: 1fr 120px 120px 120px;
+}
+.header-table .txt {
+  text-align: center;
+}
+.header-table .table-product {
+  grid-area: product;
+}
+
+.header-table .table-price {
+  grid-area: price;
+}
+
+.header-table .table-quantity {
+  grid-area: qty;
+}
+
+.header-table .table-total {
+  grid-area: total;
+}
+.section-cart .cart-item {
+  width: 100%;
+  display: grid;
+  grid-template-areas: 
+    "product price qty total";
+  grid-template-columns: 1fr 120px 120px 120px;
+  align-items: center;
+}
+
+.table-product {
+  grid-area: product;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.table-product-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-product h3::after {
+  content: ' Candleaf ©';
+}
+
+.table-product img {
+  background-color: var(--clr-light-grey);
+  margin-right: var(--gap-md);
+}
+
+.cart-item-price {
+  grid-area: price;
+}
+
+.cart-item-quantity {
+  grid-area: qty;
+}
+
+.cart-item-total {
+  grid-area: total;
+}
+
 /* ================== MEDIA QUERIES ===================== */
 
 

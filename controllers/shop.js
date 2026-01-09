@@ -40,12 +40,21 @@ exports.getProduct = (req, res, next) => {
 }
 
 exports.getCart = (req, res, next) => {
-  res.render('shop/cart',
-    {
-      pageTitle: 'Your Cart',
-      path: '/cart'
-    }
-  );
+  const products = [];
+  Cart.fetchAllCartProducts((cart) => {
+    cart.products.forEach(cartProd => {
+      Product.findById(cartProd.id, (product) => {
+        products.push({ ...product, qty: cartProd.qty});
+      });
+    });
+    
+  });
+  console.log('54', products);
+  res.render('shop/cart.ejs', {
+    path: '/cart',
+    pageTitle: 'Your cart',
+    products: products
+  })
 };
 
 exports.postCart = (req, res, next) => {
