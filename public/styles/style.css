@@ -106,7 +106,7 @@ a {
 
 .section-products {
   margin-bottom: var(--gap-xl);
-  padding: var(--gap-xxl) var(--gap-xxxl);
+  padding: var(--gap-xl) var(--gap-xxl);
   color: var(--clr-blue);
 }
 
