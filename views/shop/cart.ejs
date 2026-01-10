@@ -31,7 +31,11 @@
                       <h3 class="txt">
                         <%= product.title %>
                       </h3>
-                      <a class="cart-action txt txt-emphasize" href="/cart/delete">Remove</a>
+                      <form method="POST" action="/cart-delete-item">
+                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <input type="hidden" name="productPrice" value="<%= product.price %>">
+                        <button class="cart-action txt txt-emphasize" type="submit"">Remove</button>
+                      </form>
                       </div>
                       
                     </div>
@@ -53,6 +57,7 @@
                 <h2 class="heading-sm">Cart is empty!</h2>
                 <% } %>
           </div>
+          <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p>
         </section>
       </main>
       <%- include('../includes/end.ejs') %>
