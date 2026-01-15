@@ -3,27 +3,39 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAllProducts((products) => {
-    res.render('shop/index',
-      {
-        pageTitle: 'Candleaf',
-        prods: products,
-        path: '/'
-      }
-    );
-  });
+  Product.fetchAllProducts()
+    .then(([rows, fieldData]) => {
+      res.render('shop/index',
+        {
+          pageTitle: 'Candleaf',
+          prods: rows,
+          path: '/'
+        }
+      );
+      console.log(rows);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
 }
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAllProducts((products) => {
-    res.render('shop/product-list',
-      {
-        pageTitle: 'Products',
-        prods: products,
-        path: '/products'
-      }
-    );
-  });
+  Product.fetchAllProducts()
+    .then(([rows, fieldData]) => {
+      res.render('shop/product-list',
+        {
+          pageTitle: 'Products',
+          prods: rows,
+          path: '/products'
+        }
+      );
+      console.log(rows);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
 }
 
 exports.getProduct = (req, res, next) => {
