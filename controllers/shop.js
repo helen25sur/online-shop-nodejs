@@ -12,7 +12,6 @@ exports.getIndex = (req, res, next) => {
           path: '/'
         }
       );
-      console.log(rows);
     })
     .catch(err => {
       console.log(err);
@@ -30,7 +29,6 @@ exports.getProducts = (req, res, next) => {
           path: '/products'
         }
       );
-      console.log(rows);
     })
     .catch(err => {
       console.log(err);
@@ -40,15 +38,19 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, product => {
-    res.render('shop/product-detail',
-      {
-        pageTitle: product.title,
-        product: product,
-        path: '/products'
-      }
-    );
-  });
+  Product.findById(prodId)
+    .then(([rows]) => {
+      res.render('shop/product-detail',
+        {
+          pageTitle: rows[0].title,
+          product: rows[0],
+          path: '/products'
+        }
+      );
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 
 exports.getCart = (req, res, next) => {

@@ -12,9 +12,23 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postNewProduct = (req, res, next) => {
   const { title, imageUrl, price, description } = req.body;
-  const product = new Product(null, title, imageUrl, price, description);
-  product.save();
-  res.redirect('/');
+  const date = new Date();
+  const formatter = new Intl.DateTimeFormat('sv-SE', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).format(date);
+  const product = new Product(null, title, price, description, imageUrl, formatter);
+  product.save()
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.log(err);
+    })
 };
 
 exports.getEditProduct = (req, res, next) => {
