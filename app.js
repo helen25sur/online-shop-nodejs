@@ -1,4 +1,7 @@
 const express = require('express');
+
+const sequelize = require('./db/database');
+
 const app = express();
 const port = 3000;
 
@@ -19,6 +22,13 @@ app.use(shopRouter);
 
 app.use(errorsRouter);
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-});
+sequelize.sync()
+  .then(result => {
+    app.listen(port, () => {
+      console.log(`App listening on port ${port}`)
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  })
+
