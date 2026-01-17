@@ -21,31 +21,28 @@ exports.postNewProduct = (req, res, next) => {
   //   minute: '2-digit',
   //   second: '2-digit',
   // }).format(date);
-  Product.create({
+  req.user.createProduct({
     title: title,
     price: price,
     description: description,
     imgUrl: imageUrl,
   })
     .then(result => {
-      console.log(result.dataValues)
-      res.render('./shop/product-detail', {
-        pageTitle: result.dataValues.title,
-        path: '/admin/products',
-        product: result.dataValues
-      })
+      console.log(result.dataValues);
+      res.redirect('./products');
     })
     .catch(err => {
       console.error(err);
     })
-  
 };
 
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   const prodId = req.params.productId;
-  Product.findByPk(prodId)
-    .then(product => {
+  // Product.findByPk(prodId)
+  req.user.getProducts({ where: {id: prodId}})
+    .then(products => {
+      const product = products[0];
       if (!product) {
         return res.redirect('/');
       }
@@ -102,7 +99,7 @@ exports.postDeleteProduct = (req, res, next) => {
 }
 
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  req.user.getProducts()
     .then(products => {
       res.render('admin/products',
         {
