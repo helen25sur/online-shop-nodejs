@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
+
+
 app.use((req, res, next) => {
   User.findByPk(1)
     .then(user => {
