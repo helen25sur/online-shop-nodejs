@@ -26,6 +26,14 @@ Developed using Node.js and Express.js, the app handles dynamic product catalogs
 
 **API**: RESTful routes for products and cart
 
+## 🔹 Deployment
+
+**Backend**: Render
+
+**Database**: TiDB Cloud (MySQL-compatible)
+
+**Environment variables** used for secure configuration
+
 ## 🔹 Screenshots / Demo
 <img width="1919" height="1000" alt="image" src="https://github.com/user-attachments/assets/0ead33f2-dc62-4590-9e50-a8eb23ad3279" />
 
