@@ -12,12 +12,14 @@
               <h1 class="heading-md">Your cart items</h1>
               <a href="/products" class="txt txt-emphasize">Back to shopping</a>
             </header>
+            <% if (products.length> 0) { %>
             <div class="header-table">
               <span class="table-product">Product</span>
               <span class="table-price">Price</span>
               <span class="table-quantity">Quantity</span>
               <span class="table-total">Total</span>
             </div>
+            <% } %>
             <% if (products.length> 0) { %>
               <hr />
               <ol class="">
@@ -25,7 +27,7 @@
                   <li class="cart-item">
                     <div class="table-product">
                       <img class=""
-                      src="<%= !product.imageUrl ? '/images/product-images/spiced-mint.png' : product.imageUrl %>"
+                      src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
                       alt="<%= product.title %>" width="160">
                       <div class="table-product-content">
                       <h3 class="txt">
@@ -44,7 +46,7 @@
                       $<%= product.price %>
                     </span>
                     <span class="txt cart-item-quantity">
-                      Quantity: <%= product.qty %>
+                      Quantity: <%= product.cartItem.quantity %>
                     </span>
                     <span class="txt cart-item-total">
                       Total: <%= product.price %>
@@ -57,7 +59,9 @@
                 <h2 class="heading-sm">Cart is empty!</h2>
                 <% } %>
           </div>
-          <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p>
+          <% if (products.length> 0) { %>
+          <!-- <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p> -->
+          <% } %>
         </section>
       </main>
       <%- include('../includes/end.ejs') %>
