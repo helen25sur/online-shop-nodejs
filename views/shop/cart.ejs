@@ -49,19 +49,20 @@
                       Quantity: <%= product.cartItem.quantity %>
                     </span>
                     <span class="txt cart-item-total">
-                      Total: <%= product.price %>
+                      Total: <%= product.price * product.cartItem.quantity  %>
                     </span>
                   </li>
                   <% } %>
               </ol>
+              <!-- <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p> -->
+              <form action="/create-order" method="POST" class="flex content-center">
+                <button class="btn outline" type="submit">Order Now</button>
+              </form>
               <hr />
               <% } else { %>
                 <h2 class="heading-sm">Cart is empty!</h2>
                 <% } %>
           </div>
-          <% if (products.length> 0) { %>
-          <!-- <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p> -->
-          <% } %>
         </section>
       </main>
       <%- include('../includes/end.ejs') %>
