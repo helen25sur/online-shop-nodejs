@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/styles/form.css">
+  <link rel="stylesheet" href="/styles/admin.css">
+  </head>
+
+  <body>
+    <%- include('../includes/header.ejs') %>
+      <main class="main-content grid-container">
+        <section class="add-product grid-content">
+          <h2 class="heading-sm">
+            <%= pageTitle %>
+          </h2>
+          <form class="form txt body-txt" action="/login" method="post">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <button type="submit" class="btn solid content-center">Login</button>
+          </form>
+        </section>
+      </main>
+      <%- include('../includes/end.ejs') %>

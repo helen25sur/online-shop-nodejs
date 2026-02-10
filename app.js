@@ -17,6 +17,7 @@ app.set('views', 'views');
 
 const shopRouter = require('./routes/shop');
 const adminRouter = require('./routes/admin');
+const authRouter = require('./routes/auth');
 const errorsRouter = require('./routes/errors');
 
 app.use(express.urlencoded({ extended: true }));
@@ -37,6 +38,8 @@ app.use((req, res, next) => {
 app.use('/admin', adminRouter);
 
 app.use(shopRouter);
+
+app.use(authRouter);
 
 app.use(errorsRouter);
 
@@ -67,8 +70,8 @@ sequelize
     return User.findByPk(1);
   })
   .then(user => {
-    if(!user) {
-      return User.create({name: 'Olena', email: 'test@test.com'})
+    if (!user) {
+      return User.create({ name: 'Olena', email: 'test@test.com' })
     }
     console.log(user);
     return user;
@@ -83,8 +86,8 @@ sequelize
   })
   .then(cart => {
     // console.log(user);
-     app.listen(port, () => {
-       console.log(`App listening on port ${port}`)
+    app.listen(port, () => {
+      console.log(`App listening on port ${port}`)
     });
   })
   .catch(err => {
