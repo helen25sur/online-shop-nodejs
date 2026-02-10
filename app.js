@@ -1,4 +1,6 @@
 const express = require('express');
+const session = require('express-session');
+
 
 const sequelize = require('./db/database');
 
@@ -23,6 +25,12 @@ const errorsRouter = require('./routes/errors');
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
+
+app.use(session({
+  secret: 'this is a line of my secret',
+  resave: false,
+  saveUninitialized: false
+}));
 
 app.use((req, res, next) => {
   User.findByPk(1)
