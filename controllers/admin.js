@@ -40,7 +40,7 @@ exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   const prodId = req.params.productId;
   // Product.findByPk(prodId)
-  req.user.getProducts({ where: {id: prodId}})
+  req.user.getProducts({ where: { id: prodId } })
     .then(products => {
       const product = products[0];
       if (!product) {

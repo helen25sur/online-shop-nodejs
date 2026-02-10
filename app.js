@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sequelize = require('./db/database');
 
@@ -26,11 +26,31 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
+// app.use(session({
+//   secret: 'this is a line of my secret',
+//   resave: false,
+//   saveUninitialized: false
+// }));
+
+const myStore = new SequelizeStore({
+  db: sequelize,
+  checkExpirationInterval: 15 * 60 * 1000, // Очищати застарілі сесії кожні 15 хвилин
+  expiration: 24 * 60 * 60 * 1000  // Сесія живе 24 години
+});
+
 app.use(session({
   secret: 'this is a line of my secret',
-  resave: false,
-  saveUninitialized: false
+  store: myStore,
+  resave: false, // Для цього пакету рекомендується false
+  saveUninitialized: false,
+  proxy: true // Якщо будете деплоїти на Render, це може знадобитися для кукі
 }));
+
+app.use((req, res, next) => {
+  // res.locals дозволяє встановлювати змінні, які будуть доступні в усіх .ejs файлах
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  next();
+});
 
 app.use((req, res, next) => {
   User.findByPk(1)
