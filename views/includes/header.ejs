@@ -38,8 +38,8 @@
     </ul>
 
     <div class="cart-profile">
-      <a href="/login" class="cart-profile-btn btn">
-        <svg class="icon <%= path==='/login' ? 'active' : '' %>" width="30" height="30">
+      <a href="/profile" class="cart-profile-btn btn <%= path==='/profile' ? 'active' : '' %>">
+        <svg class="icon" width="30" height="30">
           <use href="/images/icons/profile-icon.svg#icon" />
         </svg>
       </a>
@@ -48,6 +48,14 @@
           <use href="/images/icons/cart-icon.svg#icon" />
         </svg>
       </a>
+
+      <% if (locals.isAuthenticated) { %>
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn btn-logout">Logout</button>
+        </form>
+        <% } else { %>
+          <a class="btn btn-login <%= path==='/login' ? 'active' : '' %>" href="/login">Login</a>
+          <% } %>
     </div>
   </nav>
 </header>

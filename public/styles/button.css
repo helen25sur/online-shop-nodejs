@@ -44,3 +44,26 @@
 .btn:active {
   transform: translateY(1px);
 }
+
+
+.btn.btn-login {
+  background-color: var(--clr-green);
+  color: #fff;
+  margin-left: 1rem;
+  transition: all 0.2s ease-in;
+}
+
+.btn.btn-login:hover {
+  opacity: 0.9;
+}
+
+.btn.btn-logout {
+  border-color: #B25688;
+  color: #B25688;
+  transition: all 0.2s ease-in;
+  margin-left: 1rem;
+}
+
+.btn.btn-logout:hover {
+  text-decoration: underline;
+}
