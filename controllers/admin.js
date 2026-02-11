@@ -21,7 +21,7 @@ exports.postNewProduct = (req, res, next) => {
   //   minute: '2-digit',
   //   second: '2-digit',
   // }).format(date);
-  req.user.createProduct({
+  req.session.user.createProduct({
     title: title,
     price: price,
     description: description,
@@ -40,7 +40,7 @@ exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   const prodId = req.params.productId;
   // Product.findByPk(prodId)
-  req.user.getProducts({ where: { id: prodId } })
+  req.session.user.getProducts({ where: { id: prodId } })
     .then(products => {
       const product = products[0];
       if (!product) {
@@ -99,7 +99,7 @@ exports.postDeleteProduct = (req, res, next) => {
 }
 
 exports.getProducts = (req, res, next) => {
-  req.user.getProducts()
+  req.session.user.getProducts()
     .then(products => {
       res.render('admin/products',
         {

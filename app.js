@@ -52,17 +52,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  User.findByPk(1)
-    .then(user => {
-      req.user = user;
-      next();
-    })
-    .catch(err => {
-      console.error(err);
-    })
-})
-
 app.use('/admin', adminRouter);
 
 app.use(shopRouter);
