@@ -76,7 +76,7 @@ exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   let fetchedCart;
   let newQuantity = 1;
-  req.session.user.getCart()
+  req.user.getCart()
     .then(cart => {
       fetchedCart = cart;
       return cart.getProducts({ where: { id: prodId } });
@@ -108,7 +108,7 @@ exports.postCart = (req, res, next) => {
 
 exports.deleteCartItem = (req, res, next) => {
   const prodId = req.body.productId;
-  req.session.user.getCart()
+  req.user.getCart()
     .then(cart => {
       return cart.getProducts({ where: { id: prodId } })
     })
@@ -126,14 +126,14 @@ exports.deleteCartItem = (req, res, next) => {
 
 exports.postOrder = (req, res, next) => {
   let fetchedCart;
-  req.session.user
+  req.user
     .getCart()
     .then(cart => {
       fetchedCart = cart;
       return cart.getProducts();
     })
     .then(products => {
-      return req.session.user
+      return req.user
         .createOrder()
         .then(order => {
           // Важливо: повертаємо результат addProducts
@@ -156,7 +156,7 @@ exports.postOrder = (req, res, next) => {
 }
 
 exports.getOrders = (req, res, next) => {
-  req.session.user.getOrders({ include: [Product] })
+  req.user.getOrders({ include: [Product] })
     .then(orders => {
       console.log(orders[0]);
       res.render('shop/orders',

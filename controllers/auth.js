@@ -9,11 +9,16 @@ exports.getLogin = (req, res, next) => {
 }
 
 exports.postLogin = (req, res, next) => {
-  User.findByPk(1)
+  User.findByPk(1) // Знаходимо юзера
     .then(user => {
-      req.session.user = user;
       req.session.isLoggedIn = true;
-      res.redirect('/');
+      req.session.user = user; // Зберігаємо дані в сесію
+
+      // Важливо: зберігаємо сесію перед редіректом, щоб уникнути багів
+      req.session.save(err => {
+        if (err) console.log(err);
+        res.redirect('/');
+      });
     })
     .catch(err => console.error(err));
-}
+};

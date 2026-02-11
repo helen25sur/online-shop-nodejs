@@ -11,6 +11,9 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postNewProduct = (req, res, next) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect('/login');
+  }
   const { title, imageUrl, price, description } = req.body;
   // const date = new Date();
   // const formatter = new Intl.DateTimeFormat('sv-SE', {
@@ -21,7 +24,7 @@ exports.postNewProduct = (req, res, next) => {
   //   minute: '2-digit',
   //   second: '2-digit',
   // }).format(date);
-  req.session.user.createProduct({
+  req.user.createProduct({
     title: title,
     price: price,
     description: description,
@@ -40,7 +43,7 @@ exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   const prodId = req.params.productId;
   // Product.findByPk(prodId)
-  req.session.user.getProducts({ where: { id: prodId } })
+  req.user.getProducts({ where: { id: prodId } })
     .then(products => {
       const product = products[0];
       if (!product) {
@@ -99,7 +102,7 @@ exports.postDeleteProduct = (req, res, next) => {
 }
 
 exports.getProducts = (req, res, next) => {
-  req.session.user.getProducts()
+  req.user.getProducts()
     .then(products => {
       res.render('admin/products',
         {
