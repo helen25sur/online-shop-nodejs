@@ -26,8 +26,9 @@
               <ul class="list product-list">
                 <% for (let product of prods) { %>
                   <li class="product-card content-center">
-                    <img class="product-cart-image" src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
-                    alt="<%= product.title %>" width="255">
+                    <img class="product-cart-image"
+                      src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
+                      alt="<%= product.title %>" width="255">
                     <div class="product-cart-content">
                       <h3 class="txt product-title">
                         <%= product.title %>
@@ -35,9 +36,11 @@
                       <span class="txt product-price">
                         $<%= product.price %>
                       </span>
-                      <div class="product-card_actions">
-                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                      </div>
+                      <% if (locals.isAuthenticated) { %>
+                        <div class="product-card_actions">
+                          <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                        </div>
+                        <% } %>
                     </div>
                   </li>
                   <% } %>
@@ -62,8 +65,10 @@
                   </h3>
                 </header>
                 <ul class="list list-feature">
-                  <li class="feature-item"><strong>Eco-sustainable</strong>: All recyclable materials, 0% CO2 emissions</li>
-                  <li class="feature-item"><strong>Hyphoallergenic:</strong> 100% natural, human friendly ingredients </li>
+                  <li class="feature-item"><strong>Eco-sustainable</strong>: All recyclable materials, 0% CO2 emissions
+                  </li>
+                  <li class="feature-item"><strong>Hyphoallergenic:</strong> 100% natural, human friendly ingredients
+                  </li>
                   <li class="feature-item"><strong>Handmade:</strong> All candles are craftly made with love. </li>
                   <li class="feature-item"><strong>Long burning:</strong> No more waste. Created for last long. </li>
                 </ul>
@@ -74,7 +79,7 @@
               </div>
             </div>
           </section>
-        
+
         </div>
       </main>
 

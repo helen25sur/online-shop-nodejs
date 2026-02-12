@@ -31,7 +31,9 @@
                       </p>
                       <div class="product-card_actions">
                         <a href="/products/<%= product.id %>" class="product-btn btn solid small">Details</a>
-                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                        <% if (locals.isAuthenticated) { %>
+                          <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                            <% } %>
                       </div>
                     </div>
                   </li>
