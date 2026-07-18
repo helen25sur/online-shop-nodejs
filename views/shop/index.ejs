@@ -26,22 +26,25 @@
               <ul class="list product-list">
                 <% for (let product of prods) { %>
                   <li class="product-card content-center">
-                    <img class="product-cart-image"
-                      src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
-                      alt="<%= product.title %>" width="255">
-                    <div class="product-cart-content">
-                      <h3 class="txt product-title">
-                        <%= product.title %>
-                      </h3>
-                      <span class="txt product-price">
-                        $<%= product.price %>
-                      </span>
-                      <% if (locals.isAuthenticated) { %>
-                        <div class="product-card_actions">
-                          <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                        </div>
-                        <% } %>
-                    </div>
+                    <!-- TODO: Add a link to the product details page -->
+                    <a class="product-card-link" href="/products/<%= product.id %>">
+                      <img class="product-cart-image"
+                        src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
+                        alt="<%= product.title %>" width="255">
+                      <div class="product-cart-content">
+                        <h3 class="txt product-title">
+                          <%= product.title %>
+                        </h3>
+                        <span class="txt product-price">
+                          $<%= product.price %>
+                        </span>
+                        <% if (locals.isAuthenticated) { %>
+                          <div class="product-card_actions">
+                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                          </div>
+                          <% } %>
+                      </div>
+                    </a>
                   </li>
                   <% } %>
               </ul>
