@@ -79,6 +79,7 @@ a {
 }
 
 .nav-list>.nav-item {
+  min-height: var(--gap-md);
   margin-bottom: var(--gap-sm);
 }
 
