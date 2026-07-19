@@ -190,6 +190,10 @@ a {
   align-self: center;
 }
 
+.product-card_actions form .product-btn {
+  margin-right: 0;
+}
+
 .product-card_actions {
   margin-top: 1rem;
   display: flex;
