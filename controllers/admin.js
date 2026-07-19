@@ -1,5 +1,12 @@
 const Product = require('../models/product');
 
+exports.isAuth = (req, res, next) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect('/login');
+  }
+  next();
+};
+
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product',
     {
@@ -11,19 +18,7 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postNewProduct = (req, res, next) => {
-  if (!req.session.isLoggedIn) {
-    return res.redirect('/login');
-  }
   const { title, imageUrl, price, description } = req.body;
-  // const date = new Date();
-  // const formatter = new Intl.DateTimeFormat('sv-SE', {
-  //   year: 'numeric',
-  //   month: '2-digit',
-  //   day: '2-digit',
-  //   hour: '2-digit',
-  //   minute: '2-digit',
-  //   second: '2-digit',
-  // }).format(date);
   req.user.createProduct({
     title: title,
     price: price,
