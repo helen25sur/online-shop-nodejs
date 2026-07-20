@@ -94,6 +94,7 @@ Order.belongsTo(User);
 Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
+  // .sync({ alter: true })
   .sync()
   // .sync({ force: true })
   .then(result => {
