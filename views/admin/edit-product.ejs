@@ -23,7 +23,7 @@
                 value="<% if (editing) { %><%= product.price%><% } %>" required>
             </label>
             <label for="description">Description: </label>
-            <textarea name="description" id="description"
+            <textarea name="description" id="description" required placeholder="Description"
               rows="5"><% if (editing) { %><%= product.description %><% } %></textarea>
             <% if (editing) { %>
               <input type="hidden" name="productId" value="<%= product.id %>">

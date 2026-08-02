@@ -28,7 +28,8 @@ exports.postNewProduct = (req, res, next) => {
   })
     .then(result => {
       console.log(result.dataValues);
-      res.redirect('./products');
+      req.session.successMessage = 'Product created successfully';
+      return req.session.save(() => res.redirect('/admin/products'));
     })
     .catch(err => {
       console.error(err);
@@ -99,6 +100,9 @@ exports.postDeleteProduct = (req, res, next) => {
 }
 
 exports.getProducts = (req, res, next) => {
+  const successMessage = req.session.successMessage;
+  req.session.successMessage = null;
+
   req.user.getProducts()
     .then(products => {
       res.render('admin/products',
@@ -106,7 +110,8 @@ exports.getProducts = (req, res, next) => {
           pageTitle: 'Admin Products',
           prods: products,
           path: '/admin/products',
-          csrfToken: res.locals.csrfToken
+          csrfToken: res.locals.csrfToken,
+          successMessage: successMessage
         }
       );
     })

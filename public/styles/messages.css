@@ -1,0 +1,65 @@
+/* Базове повідомлення про помилку */
+.error-message {
+  display: flex;
+  align-items: center;
+  width: 88vw;
+  margin: 0 auto;
+  gap: 10px;
+  background-color: #FDECEC;
+  border: 1px solid #F3B8B8;
+  border-left: 4px solid #D9534F;
+  color: #8A2E2E;
+  padding: 12px 16px;
+  border-radius: 1px;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.error-message::before {
+  content: "!";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background-color: #D9534F;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* Повідомлення про успіх — під зелену палітру сайту */
+.success-message {
+  display: flex;
+  align-items: center;
+  width: 88vw;
+  margin: 0 auto;
+  gap: 10px;
+  background-color: #EAF7EF;
+  border: 1px solid #BEE4CC;
+  border-left: 4px solid #4CAF7D;
+  color: #1F6B45;
+  padding: 12px 16px;
+  border-radius: 1px;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.success-message::before {
+  content: "✓";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background-color: #4CAF7D;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+}

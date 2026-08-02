@@ -2,10 +2,17 @@ const bcryptjs = require('bcryptjs');
 const User = require('../models/user');
 
 exports.getLogin = (req, res, next) => {
+  const errorMessage = req.session.errorMessage;
+  req.session.errorMessage = null;
+  const successMessage = req.session.successMessage;
+  req.session.successMessage = null;
+
   res.render('auth/login', {
     pageTitle: 'Login',
     path: '/login',
-    csrfToken: res.locals.csrfToken
+    csrfToken: res.locals.csrfToken,
+    errorMessage: errorMessage,
+    successMessage: successMessage
   });
 }
 
@@ -17,21 +24,21 @@ exports.postLogin = (req, res, next) => {
       if (!user) {
         // такого email немає в БД
         console.log('User not found');
-        return res.redirect('/login');
+        req.session.errorMessage = 'User with such email not found';
+        return req.session.save(() => res.redirect('/login'));
+        // return res.redirect('/login');
       }
       return bcryptjs.compare(password, user.password)
         .then(doMatch => {
           if (doMatch) {
             req.session.isLoggedIn = true;
             req.session.user = user;
-            return req.session.save(err => {
-              if (err) console.log(err);
-              res.redirect('/');
-            });
+            return req.session.save(() => res.redirect('/'));
           }
           // пароль неправильний
           console.log('Incorrect password');
-          res.redirect('/login');
+          req.session.errorMessage = 'Incorrect password';
+          return req.session.save(() => res.redirect('/login'));
         });
     })
     .catch(err => console.error(err));
@@ -45,10 +52,17 @@ exports.postLogout = (req, res, next) => {
 };
 
 exports.getRegister = (req, res, next) => {
+  const errorMessage = req.session.errorMessage;
+  req.session.errorMessage = null;
+  const successMessage = req.session.successMessage;
+  req.session.successMessage = null;
+
   res.render('auth/register', {
     pageTitle: 'Register',
     path: '/register',
-    csrfToken: res.locals.csrfToken
+    csrfToken: res.locals.csrfToken,
+    errorMessage: errorMessage,
+    successMessage: successMessage
   });
 };
 
@@ -60,7 +74,8 @@ exports.postRegister = (req, res, next) => {
       if (user) {
         // користувач з таким email вже існує
         console.log('User already exists');
-        return res.redirect('/register');
+        req.session.errorMessage = 'User with such email already exists';
+        return req.session.save(() => res.redirect('/register'));
       }
       return bcryptjs.hash(password, 12)
         .then(hashedPassword => {
@@ -80,7 +95,8 @@ exports.postRegister = (req, res, next) => {
         })
         .then(result => {
           console.log(result.dataValues);
-          res.redirect('/login');
+          req.session.successMessage = 'User created successfully';
+          return req.session.save(() => res.redirect('/login'));
         });
     })
     .catch(err => console.error(err));
