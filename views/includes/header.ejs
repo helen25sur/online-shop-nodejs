@@ -51,10 +51,12 @@
 
       <% if (locals.isAuthenticated) { %>
         <form action="/logout" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button type="submit" class="btn btn-logout">Logout</button>
         </form>
         <% } else { %>
           <a class="btn btn-login <%= path==='/login' ? 'active' : '' %>" href="/login">Login</a>
+          <a class="btn btn-register <%= path==='/register' ? 'active' : '' %>" href="/register">Sign Up</a>
           <% } %>
     </div>
   </nav>

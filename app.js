@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+const { generateToken, invalidCsrfTokenError } = require('./utils/csrf');
 const sequelize = require('./db/database');
 
 const Product = require('./models/product');
@@ -43,7 +44,8 @@ app.use(session({
   store: myStore,
   resave: false, // Для цього пакету рекомендується false
   saveUninitialized: false,
-  proxy: true // Якщо будете деплоїти на Render, це може знадобитися для кукі
+  proxy: true, // Якщо будете деплоїти на Render, це може знадобитися для кукі
+  cookie: { secure: false }
 }));
 
 app.use((req, res, next) => {
@@ -65,14 +67,31 @@ app.use((req, res, next) => {
     .catch(err => console.log(err));
 });
 
+app.use((req, res, next) => {
+  res.locals.csrfToken = generateToken(req);
+  next();
+});
+
 app.use('/admin', adminRouter);
 
 app.use(shopRouter);
 
 app.use(authRouter);
 
-app.use(errorsRouter);
 
+app.use((error, req, res, next) => {
+  if (error === invalidCsrfTokenError) {
+    return res.status(403).render('./errors/403', {
+      pageTitle: 'Forbidden',
+      path: './403',
+      message: 'Форма застаріла або сесія закінчилась. Спробуйте ще раз.',
+      csrfToken: res.locals.csrfToken
+    });
+  }
+  next(error);
+});
+
+app.use(errorsRouter);
 // Product association
 Product.belongsTo(User, {
   constrains: true,
@@ -94,34 +113,10 @@ Order.belongsTo(User);
 Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
-  // .sync({ alter: true })
   .sync()
-  // .sync({ force: true })
-  .then(result => {
-    return User.findByPk(1);
-  })
-  .then(user => {
-    if (!user) {
-      return User.create({ name: 'Olena', email: 'test@test.com' })
-    }
-    console.log(user);
-    return user;
-  })
-  .then(user => {
-    return user.getCart().then(cart => {
-      if (!cart) {
-        return user.createCart();
-      }
-      return cart;
-    });
-  })
-  .then(cart => {
-    // console.log(user);
+  .then(() => {
     app.listen(port, () => {
-      console.log(`App listening on port ${port}`)
+      console.log(`App listening on port ${port}`);
     });
   })
-  .catch(err => {
-    console.error(err);
-  })
-
+  .catch(err => console.error(err));

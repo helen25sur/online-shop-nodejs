@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+const { csrfSynchronisedProtection } = require('../utils/csrf');
+
 const authControllers = require('../controllers/auth');
 
 router.get('/login', authControllers.getLogin);
-router.post('/login', authControllers.postLogin);
+router.post('/login', csrfSynchronisedProtection, authControllers.postLogin);
 router.post('/logout', authControllers.postLogout);
 router.get('/register', authControllers.getRegister);
-router.post('/register', authControllers.postRegister);
+router.post('/register', csrfSynchronisedProtection, authControllers.postRegister);
 
 module.exports = router;

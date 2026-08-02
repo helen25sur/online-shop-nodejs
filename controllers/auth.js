@@ -4,7 +4,8 @@ const User = require('../models/user');
 exports.getLogin = (req, res, next) => {
   res.render('auth/login', {
     pageTitle: 'Login',
-    path: '/login'
+    path: '/login',
+    csrfToken: res.locals.csrfToken
   });
 }
 
@@ -46,7 +47,8 @@ exports.postLogout = (req, res, next) => {
 exports.getRegister = (req, res, next) => {
   res.render('auth/register', {
     pageTitle: 'Register',
-    path: '/register'
+    path: '/register',
+    csrfToken: res.locals.csrfToken
   });
 };
 
@@ -66,6 +68,14 @@ exports.postRegister = (req, res, next) => {
             name: username,
             email: email,
             password: hashedPassword
+          });
+        })
+        .then(user => {
+          return user.getCart().then(cart => {
+            if (!cart) {
+              return user.createCart();
+            }
+            return cart;
           });
         })
         .then(result => {

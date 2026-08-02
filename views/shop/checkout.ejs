@@ -2,6 +2,6 @@
   </head>
 
   <body>
-    <%- include('../includes/header.ejs') %>
-    <h1>Checkout</h1>
-    <%- include('../includes/end.ejs') %>
+    <%- include('../includes/header.ejs'), { csrfToken: csrfToken } %>
+      <h1>Checkout</h1>
+      <%- include('../includes/end.ejs') %>

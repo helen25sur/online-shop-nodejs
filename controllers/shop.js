@@ -7,7 +7,8 @@ exports.getIndex = (req, res, next) => {
         {
           pageTitle: 'Candleaf',
           prods: products,
-          path: '/'
+          path: '/',
+          csrfToken: res.locals.csrfToken
         }
       );
     })
@@ -24,7 +25,8 @@ exports.getProducts = (req, res, next) => {
         {
           pageTitle: 'Products',
           prods: products,
-          path: '/products'
+          path: '/products',
+          csrfToken: res.locals.csrfToken
         }
       );
     })
@@ -41,7 +43,8 @@ exports.getProduct = (req, res, next) => {
         {
           pageTitle: product.title,
           product: product,
-          path: '/products'
+          path: '/products',
+          csrfToken: res.locals.csrfToken
         }
       );
     })
@@ -60,7 +63,8 @@ exports.getCart = (req, res, next) => {
             path: '/cart',
             pageTitle: 'Your cart',
             products: cartProducts,
-            totalPrice: cart.totalPrice
+            totalPrice: cart.totalPrice,
+            csrfToken: res.locals.csrfToken
           });
         })
         .catch(err => {
@@ -163,7 +167,8 @@ exports.getOrders = (req, res, next) => {
         {
           pageTitle: 'Your Orders',
           path: '/orders',
-          orders: orders
+          orders: orders,
+          csrfToken: res.locals.csrfToken
         }
       );
 

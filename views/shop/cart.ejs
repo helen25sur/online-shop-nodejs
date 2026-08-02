@@ -2,7 +2,7 @@
   </head>
 
   <body>
-    <%- include('../includes/header.ejs') %>
+    <%- include('../includes/header.ejs'), { csrfToken: csrfToken } %>
 
       <main class="main-content grid-container">
 
@@ -13,55 +13,57 @@
               <a href="/products" class="txt txt-emphasize">Back to shopping</a>
             </header>
             <% if (products.length> 0) { %>
-            <div class="header-table">
-              <span class="table-product">Product</span>
-              <span class="table-price">Price</span>
-              <span class="table-quantity">Quantity</span>
-              <span class="table-total">Total</span>
-            </div>
-            <% } %>
-            <% if (products.length> 0) { %>
-              <hr />
-              <ol class="">
-                <% for (let product of products) { %>
-                  <li class="cart-item">
-                    <div class="table-product">
-                      <img class=""
-                      src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
-                      alt="<%= product.title %>" width="160">
-                      <div class="table-product-content">
-                      <h3 class="txt">
-                        <%= product.title %>
-                      </h3>
-                      <form method="POST" action="/cart-delete-item">
-                        <input type="hidden" name="productId" value="<%= product.id %>">
-                        <input type="hidden" name="productPrice" value="<%= product.price %>">
-                        <button class="cart-action txt txt-emphasize" type="submit"">Remove</button>
+              <div class="header-table">
+                <span class="table-product">Product</span>
+                <span class="table-price">Price</span>
+                <span class="table-quantity">Quantity</span>
+                <span class="table-total">Total</span>
+              </div>
+              <% } %>
+                <% if (products.length> 0) { %>
+                  <hr />
+                  <ol class="">
+                    <% for (let product of products) { %>
+                      <li class="cart-item">
+                        <div class="table-product">
+                          <img class=""
+                            src="<%= !product.imgUrl ? '/images/product-images/spiced-mint.png' : product.imgUrl %>"
+                            alt="<%= product.title %>" width="160">
+                          <div class="table-product-content">
+                            <h3 class="txt">
+                              <%= product.title %>
+                            </h3>
+                            <form method="POST" action="/cart-delete-item">
+                              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                              <input type="hidden" name="productId" value="<%= product.id %>">
+                              <input type="hidden" name="productPrice" value="<%= product.price %>">
+                              <button class="cart-action txt txt-emphasize" type="submit"">Remove</button>
                       </form>
                       </div>
                       
                     </div>
 
-                    <span class="txt cart-item-price">
-                      $<%= product.price %>
-                    </span>
-                    <span class="txt cart-item-quantity">
-                      Quantity: <%= product.cartItem.quantity %>
-                    </span>
-                    <span class="txt cart-item-total">
-                      Total: <%= product.price * product.cartItem.quantity  %>
-                    </span>
-                  </li>
-                  <% } %>
-              </ol>
-              <!-- <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p> -->
-              <form action="/create-order" method="POST" class="flex content-center">
-                <button class="btn outline" type="submit">Order Now</button>
-              </form>
-              <hr />
-              <% } else { %>
-                <h2 class="heading-sm">Cart is empty!</h2>
-                <% } %>
+                    <span class=" txt cart-item-price">
+                                $<%= product.price %>
+                                  </span>
+                                  <span class="txt cart-item-quantity">
+                                    Quantity: <%= product.cartItem.quantity %>
+                                  </span>
+                                  <span class="txt cart-item-total">
+                                    Total: <%= product.price * product.cartItem.quantity %>
+                                  </span>
+                      </li>
+                      <% } %>
+                  </ol>
+                  <!-- <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p> -->
+                  <form action="/create-order" method="POST" class="flex content-center">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn outline" type="submit">Order Now</button>
+                  </form>
+                  <hr />
+                  <% } else { %>
+                    <h2 class="heading-sm">Cart is empty!</h2>
+                    <% } %>
           </div>
         </section>
       </main>

@@ -376,6 +376,7 @@ a {
   background-color: #272727;
   justify-content: center;
   gap: 0;
+  margin-bottom: 0;
 }
 
 .section-footer .section-last-content {

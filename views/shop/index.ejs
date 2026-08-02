@@ -2,7 +2,7 @@
   </head>
 
   <body>
-    <%- include('../includes/header.ejs') %>
+    <%- include('../includes/header.ejs'), { csrfToken: csrfToken } %>
       <main class="main-content grid-container">
         <section class="hero-section grid-content-full">
           <div class="hero-info-block section-content">

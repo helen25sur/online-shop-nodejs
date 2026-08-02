@@ -4,7 +4,7 @@
   </head>
 
   <body>
-    <%- include('../includes/header.ejs') %>
+    <%- include('../includes/header.ejs'), { csrfToken: csrfToken } %>
       <main class="main-content grid-container">
         <section class="add-product grid-content">
           <h2 class="heading-sm">
@@ -15,6 +15,7 @@
             <input type="email" name="email" id="email" placeholder="Email">
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" placeholder="Password">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <button type="submit" class="btn solid content-center">Login</button>
           </form>
           <div class="txt body-txt flex-column center">

@@ -57,6 +57,19 @@
   opacity: 0.9;
 }
 
+.btn.btn-register {
+  border-width: 1px;
+  border-color: var(--clr-green);
+  color: var(--clr-green);
+  margin-left: 1rem;
+  transition: all 0.2s ease-in;
+}
+
+.btn.btn-register:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
 .btn.btn-logout {
   border-color: #B25688;
   color: #B25688;
