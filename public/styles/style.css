@@ -30,6 +30,12 @@ a {
   align-items: center;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-header {
   position: sticky;
   top: 0;

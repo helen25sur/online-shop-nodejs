@@ -10,16 +10,17 @@
           <h2 class="heading-sm">
             <%= pageTitle %>
           </h2>
-          <form class="form txt body-txt" action="/login" method="post">
+          <form class="form txt body-txt" action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="Username">
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" placeholder="Email">
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" placeholder="Password">
-            <button type="submit" class="btn solid content-center">Login</button>
+            <button type="submit" class="btn solid content-center">Register</button>
           </form>
           <div class="txt body-txt flex-column center">
-            <p><a class="active" href="/reset-password">Forgot your password?</a></p>
-            <p>Don't have an account?<a class="active" href="/register"> Register here</a></p>
+            <p>Already have an account?<a class="active" href="/login"> Login here</a></p>
           </div>
         </section>
       </main>
