@@ -4,9 +4,11 @@ A clean, nature-inspired e-commerce application designed to provide a seamless s
 
 Developed using Node.js and Express.js, the app handles dynamic product catalogs, detailed item views, and a functional shopping cart system, ensuring smooth communication between the user interface and server-side logic.
 
-Approximately [![wakatime](https://wakatime.com/badge/user/7898c8e2-6b19-4825-b1c2-bbaaba8cace0/project/9087dd26-2c32-4331-a365-95e27617a54a.svg)](https://wakatime.com/badge/user/7898c8e2-6b19-4825-b1c2-bbaaba8cace0/project/9087dd26-2c32-4331-a365-95e27617a54a) of coding time were tracked during the development of this project.
+[![wakatime](https://wakatime.com/badge/user/7898c8e2-6b19-4825-b1c2-bbaaba8cace0/project/9087dd26-2c32-4331-a365-95e27617a54a.svg)](https://wakatime.com/badge/user/7898c8e2-6b19-4825-b1c2-bbaaba8cace0/project/9087dd26-2c32-4331-a365-95e27617a54a) 
 
-The main focus areas included:
+Coding time tracked during development of this project.
+
+### The main focus areas included:
 
 - Express.js application structure
 - database integration and Sequelize models
@@ -17,16 +19,20 @@ The main focus areas included:
 
 ## 🔹 Features
 
-- Browse a dynamic product catalog
-- View detailed product pages with descriptions and images
-- Add, remove, and update items in the shopping cart
-- Clean and minimalist EJS/HTML frontend
-- Database integration with MySQL
-- User authentication with sessions
-- Password reset functionality via email
-- Protected admin routes
+### Customer functionality
+- Browse product catalog
+- View product details
+- Add, remove, and update cart items
+
+### User & security functionality
+- Session-based authentication
+- Password reset via email
+- CSRF protection
+- Protected routes
+
+### Product management
+- Create, edit, and delete products
 - User-based product ownership validation
-- CSRF protection for forms
 
 ## 🔹 Tech Stack
 
@@ -38,11 +44,15 @@ The main focus areas included:
 
 **API**: RESTful routes for products and cart
 
+**Authentication**: Express sessions, bcrypt, CSRF protection
+
+**Email**: Nodemailer
+
 ## 🔹 Deployment
 
 **Backend**: Render
 
-**Database**: MySQL (hosted on TiDB Cloud)
+**Database**: MySQL-compatible TiDB Cloud
 
 **ORM**: Sequelize
 
@@ -57,6 +67,7 @@ The application follows an MVC-style architecture:
 - `models` — Sequelize database models
 - `views` — EJS templates
 - `middleware` — authentication and security middleware
+- `db` — database connection setup
 
 ## 🔹 Security
 
@@ -74,11 +85,19 @@ Implemented:
 
 ## 🔹 Screenshots / Demo
 
-<img width="1919" height="1000" alt="image" src="https://github.com/user-attachments/assets/0ead33f2-dc62-4590-9e50-a8eb23ad3279" />
+### **Live Demo:** [Link to deployed version](https://candleaf2.onrender.com/)
 
-<img width="1919" height="1002" alt="image" src="https://github.com/user-attachments/assets/38d05e4e-32e6-4f8a-9922-249fa7c1068a" />
+### Home Page
+<img width="1919" height="1000" alt="main page" src="https://github.com/user-attachments/assets/0ead33f2-dc62-4590-9e50-a8eb23ad3279" />
 
-**Live Demo:** [Link to deployed version](https://candleaf2.onrender.com/)
+### Product Catalog
+<img width="1919" height="1002" alt="product catalogue" src="https://github.com/user-attachments/assets/38d05e4e-32e6-4f8a-9922-249fa7c1068a" />
+
+### Shopping Cart
+<img width="1919" height="1002" alt="cart" src="https://github.com/user-attachments/assets/ac709582-50bd-44bf-b615-9b8dbfb25106" />
+
+
+
 
 ## 🔹 Getting Started (Local Setup)
 
@@ -102,15 +121,11 @@ http://localhost:3000
 
 ## 🔹 Future Features
 
-- Admin panel for managing products and orders
-
 - Search and filter functionality for products
 
 - Order management system
 
 - Checkout and payment integration
-
-- Product search and filtering
 
 - User order history
 
