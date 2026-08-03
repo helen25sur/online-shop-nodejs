@@ -11,4 +11,10 @@ router.post('/logout', csrfSynchronisedProtection, authControllers.postLogout);
 router.get('/register', authControllers.getRegister);
 router.post('/register', csrfSynchronisedProtection, authControllers.postRegister);
 
+router.get('/reset-password', authControllers.getResetPassword);
+router.post('/reset-password', csrfSynchronisedProtection, authControllers.postResetPassword);
+
+router.get('/reset-password/:token', authControllers.getNewPassword);
+router.post('/new-password', csrfSynchronisedProtection, authControllers.postNewPassword);
+
 module.exports = router;
