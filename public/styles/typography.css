@@ -4,7 +4,7 @@
   font-weight: 500;
   text-decoration: none;
   font-size: 16px;
-  line-height: 18px;
+  line-height: 1.5;
 }
 
 .heading-md,
@@ -41,4 +41,22 @@
 
 .txt-emphasize {
   color: var(--clr-green);
+}
+
+@media screen and (max-width: 620px) {
+  .heading-md {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .heading-sm {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .descr-heading {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
 }

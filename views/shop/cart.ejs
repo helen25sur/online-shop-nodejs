@@ -22,7 +22,7 @@
               <% } %>
                 <% if (products.length> 0) { %>
                   <hr />
-                  <ol class="">
+                  <ol class="cart-list list">
                     <% for (let product of products) { %>
                       <li class="cart-item">
                         <div class="table-product">
@@ -53,6 +53,7 @@
                                     Total: <%= product.price * product.cartItem.quantity %>
                                   </span>
                       </li>
+                      <hr />
                       <% } %>
                   </ol>
                   <!-- <p>Total Price: <%= Number.parseFloat(totalPrice).toFixed(2) %></p> -->

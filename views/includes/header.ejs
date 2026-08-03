@@ -6,11 +6,13 @@
       <span class="mob-burger-span"></span>
     </button>
 
-    <a class="nav-link" href="/">
-      <svg class="logo" width="126" height="34">
-        <use href="/images/icons/logo.svg#logo" />
-      </svg>
-    </a>
+    <div class="logo-link">
+      <a class="nav-link" href="/">
+        <svg class="logo" width="126" height="34">
+          <use href="/images/icons/logo.svg#logo" />
+        </svg>
+      </a>
+    </div>
 
     <ul class="nav-list header-list list txt body-txt">
       <li class="nav-item <%= path==='/' ? 'active' : '' %>">
@@ -27,37 +29,38 @@
           <a class="nav-link" href="/orders">Orders</a>
         </li>
         <li class="nav-item <%= path==='/admin/add-product' ? 'active' : '' %>">
-          <a class="nav-link" href="/admin/add-product">Add Product</a>
+          <a class="nav-link" href="/admin/add-product">Add&nbsp;Product</a>
         </li>
         <li class="nav-item <%= path==='/admin/products' ? 'active' : '' %>">
-          <a class="nav-link" href="/admin/products">Admin Products</a>
+          <a class="nav-link" href="/admin/products">Admin&nbsp;Products</a>
         </li>
         <% } %>
           <!-- <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li> -->
     </ul>
+    <% if (locals.isAuthenticated) { %>
+      <div class="cart-profile">
+        <a href="/profile" class="cart-profile-btn btn <%= path==='/profile' ? 'active' : '' %>">
+          <svg class="icon" width="30" height="30">
+            <use href="/images/icons/profile-icon.svg#icon" />
+          </svg>
+        </a>
+        <a href="/cart" class="cart-profile-btn btn">
+          <svg class="icon <%= path==='/cart' ? 'active' : '' %>" width="26" height="26">
+            <use href="/images/icons/cart-icon.svg#icon" />
+          </svg>
+        </a>
+        <% } %>
 
-    <div class="cart-profile">
-      <a href="/profile" class="cart-profile-btn btn <%= path==='/profile' ? 'active' : '' %>">
-        <svg class="icon" width="30" height="30">
-          <use href="/images/icons/profile-icon.svg#icon" />
-        </svg>
-      </a>
-      <a href="/cart" class="cart-profile-btn btn">
-        <svg class="icon <%= path==='/cart' ? 'active' : '' %>" width="26" height="26">
-          <use href="/images/icons/cart-icon.svg#icon" />
-        </svg>
-      </a>
-
-      <% if (locals.isAuthenticated) { %>
-        <form action="/logout" method="POST">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-          <button type="submit" class="btn btn-logout">Logout</button>
-        </form>
-        <% } else { %>
-          <a class="btn btn-login <%= path==='/login' ? 'active' : '' %>" href="/login">Login</a>
-          <a class="btn btn-register <%= path==='/register' ? 'active' : '' %>" href="/register">Sign Up</a>
-          <% } %>
-    </div>
+          <% if (locals.isAuthenticated) { %>
+            <form action="/logout" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="btn btn-logout">Logout</button>
+            </form>
+            <% } else { %>
+              <a class="btn btn-login <%= path==='/login' ? 'active' : '' %>" href="/login">Login</a>
+              <a class="btn btn-register <%= path==='/register' ? 'active' : '' %>" href="/register">Sign&nbsp;Up</a>
+              <% } %>
+      </div>
   </nav>
 </header>
