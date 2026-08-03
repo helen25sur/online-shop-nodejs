@@ -1,5 +1,15 @@
 const bcryptjs = require('bcryptjs');
+const nodemailer = require('nodemailer');
+
 const User = require('../models/user');
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 exports.getLogin = (req, res, next) => {
   const errorMessage = req.session.errorMessage;
@@ -66,38 +76,39 @@ exports.getRegister = (req, res, next) => {
   });
 };
 
-exports.postRegister = (req, res, next) => {
+exports.postRegister = async (req, res, next) => {
   const { username, email, password } = req.body;
+  const existingUser = await User.findOne({ where: { email: email } });
+  if (existingUser) {
+    console.log('User already exists');
+    req.session.errorMessage = 'User with such email already exists';
+    return req.session.save(() => res.redirect('/register'));
+  }
 
-  User.findOne({ where: { email: email } })
-    .then(user => {
-      if (user) {
-        // користувач з таким email вже існує
-        console.log('User already exists');
-        req.session.errorMessage = 'User with such email already exists';
-        return req.session.save(() => res.redirect('/register'));
-      }
-      return bcryptjs.hash(password, 12)
-        .then(hashedPassword => {
-          return User.create({
-            name: username,
-            email: email,
-            password: hashedPassword
-          });
-        })
-        .then(user => {
-          return user.getCart().then(cart => {
-            if (!cart) {
-              return user.createCart();
-            }
-            return cart;
-          });
-        })
-        .then(result => {
-          console.log(result.dataValues);
-          req.session.successMessage = 'User created successfully';
-          return req.session.save(() => res.redirect('/login'));
-        });
-    })
-    .catch(err => console.error(err));
-};
+  try {
+    const hashedPassword = await bcryptjs.hash(password, 12);
+    const user = await User.create({
+      name: username,
+      email: email,
+      password: hashedPassword
+    });
+    const cart = await user.getCart();
+    if (!cart) {
+      await user.createCart();
+    }
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: "Signup is successful",
+      html: `<h1>Welcome!</h1>
+              <p>${user.name}, nice to see you in our community!</p>
+              <p>We hope, you'll be satisfied!</p>`
+    });
+    req.session.successMessage = 'User created successfully';
+    return req.session.save(() => res.redirect('/login'));
+  } catch (err) {
+    console.error(err);
+    req.session.errorMessage = 'An error occurred during registration';
+    return req.session.save(() => res.redirect('/register'));
+  }
+}
