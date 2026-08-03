@@ -61,43 +61,64 @@ exports.getEditProduct = (req, res, next) => {
     })
 };
 
-exports.postEditProduct = (req, res, next) => {
+exports.postEditProduct = async (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
-  Product.findByPk(prodId)
-    .then(product => {
-      product.title = updatedTitle;
-      product.price = updatedPrice;
-      product.description = updatedDesc;
-      product.imgUrl = updatedImageUrl;
-      return product.save();
-    })
-    .then(result => {
-      console.log('Updated product');
-      res.redirect('/admin/products');
-    })
-    .catch(err => {
-      console.error(err);
-    })
-}
 
-exports.postDeleteProduct = (req, res, next) => {
+  try {
+    const product = await Product.findByPk(prodId);
+
+    if (!product) {
+      return res.redirect('/');
+    }
+
+    if (product.userId !== req.user.id) {
+      return res.redirect('/');
+    }
+
+    product.title = updatedTitle;
+    product.price = updatedPrice;
+    product.description = updatedDesc;
+    product.imgUrl = updatedImageUrl;
+
+    await product.save();
+
+    console.log('Updated product');
+    return res.redirect('/admin/products');
+
+  } catch (err) {
+    console.error(err);
+    return res.redirect('/');
+  }
+};
+
+exports.postDeleteProduct = async (req, res, next) => {
   const prodId = req.body.productId;
-  Product.findByPk(prodId)
-    .then(product => {
-      return product.destroy()
-    })
-    .then(result => {
-      console.log('Deleted product')
-      res.redirect('/admin/products');
-    })
-    .catch(err => {
-      console.error(err);
-    })
-}
+
+  try {
+    const product = await Product.findByPk(prodId);
+
+    if (!product) {
+      return res.redirect('/');
+    }
+
+    if (product.userId !== req.user.id) {
+      return res.redirect('/');
+    }
+
+    await product.destroy();
+
+    console.log('Deleted product');
+    return res.redirect('/admin/products');
+
+  } catch (err) {
+    console.error(err);
+    return res.redirect('/');
+  }
+};
 
 exports.getProducts = (req, res, next) => {
   const successMessage = req.session.successMessage;

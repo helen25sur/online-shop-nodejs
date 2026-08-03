@@ -29,6 +29,7 @@ exports.getLogin = (req, res, next) => {
 }
 
 exports.postLogin = (req, res, next) => {
+
   const { email, password } = req.body;
 
   User.findOne({ where: { email: email } })

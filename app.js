@@ -78,6 +78,10 @@ app.use(shopRouter);
 
 app.use(authRouter);
 
+app.use((req, res, next) => {
+  console.log(req.method, req.originalUrl);
+  next();
+});
 
 app.use((error, req, res, next) => {
   if (error === invalidCsrfTokenError) {
